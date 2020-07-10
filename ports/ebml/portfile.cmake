@@ -1,14 +1,14 @@
 include(vcpkg_common_functions)
 
 if(VCPKG_CMAKE_SYSTEM_NAME STREQUAL "WindowsStore")
-    message(FATAL_ERROR "ebml does not currently support UWP")
+    message(FATAL_ERROR "${PORT} does not currently support UWP")
 endif()
 
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO Matroska-Org/libebml
-    REF release-1.3.8
-    SHA512 8af11f8ff22be1c72170eec97de813c4206c65795a320a86dd111794dc5b05c279d9455b87919b239762055d93704eec87cb023c53cf769da83ee22dbb49cc04
+    REF 1e23ac6e09da110b51dba42299b4a5e09098a98a # release-1.3.10
+    SHA512 ba75b48430b2bc159da41d0ac702239a37728f3d047f77ccc946ac08454002484b765a7503431c9d35f468d742f67f1f6d53d12b2dae802c3ac3d070a03f983d
     HEAD_REF master
 )
 
@@ -25,4 +25,4 @@ vcpkg_fixup_cmake_targets(CONFIG_PATH lib/cmake/EBML)
 file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/debug/include)
 
 # Handle copyright
-file(INSTALL ${SOURCE_PATH}/LICENSE.LGPL DESTINATION ${CURRENT_PACKAGES_DIR}/share/ebml RENAME copyright)
+file(INSTALL ${SOURCE_PATH}/LICENSE.LGPL DESTINATION ${CURRENT_PACKAGES_DIR}/share/${PORT} RENAME copyright)
